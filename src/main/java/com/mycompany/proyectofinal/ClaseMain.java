@@ -1,8 +1,14 @@
 package com.mycompany.proyectofinal;
 
-public class ClaseMain {
+import com.mycompany.JFrame.JFrameMapa;
+import com.mycompany.JFrame.JFramePrincipal;
 
+public class ClaseMain {
+    
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+//        JFrameMapa mapa= new JFrameMapa();
+//        mapa.setVisible(true);
+        JFramePrincipal principal = new JFramePrincipal();
+        principal.setVisible(true);
     }
 }
