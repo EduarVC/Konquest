@@ -1,6 +1,7 @@
 package com.mycompany.JFrame;
 
 import com.mycompany.EstablecerImagen.EstablecerImagen;
+import static com.mycompany.EstablecerImagen.EstablecerImagen.establecerImagen;
 
 /**
  *
@@ -8,11 +9,9 @@ import com.mycompany.EstablecerImagen.EstablecerImagen;
  */
 public class JFramePrincipal extends javax.swing.JFrame {
 
-    EstablecerImagen establecerFondo;
     public JFramePrincipal() {
-        initComponents();
-        establecerFondo = new EstablecerImagen();
-        establecerFondo.establecerImagen(jlbFondo, "src/main/java/com/mycompany/Imagenes/FondoNave.jpg"); //establecemos la imagen de fondo
+       initComponents();
+       establecerImagen(jlbFondo, "src/main/java/com/mycompany/Imagenes/FondoNave.jpg"); //establecemos la imagen de fondo
         
     }
 
@@ -25,110 +24,87 @@ public class JFramePrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        cmbListaMapas = new javax.swing.JComboBox<>();
+        btnAñadirJugador = new javax.swing.JButton();
+        btnEditarMapa = new javax.swing.JButton();
+        btnReportes = new javax.swing.JButton();
+        btnGuardarSalir = new javax.swing.JButton();
+        btnIniciarPartida = new javax.swing.JButton();
+        cmbListaJugadores = new javax.swing.JComboBox<>();
+        btnEliminarJugador = new javax.swing.JButton();
+        btnCrearMapa = new javax.swing.JButton();
+        lblElegirMapa = new javax.swing.JLabel();
+        lblListaJugadores = new javax.swing.JLabel();
         jlbFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbListaMapas.setBackground(new java.awt.Color(0, 25, 11));
+        cmbListaMapas.setForeground(new java.awt.Color(204, 204, 204));
+        cmbListaMapas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mapas" }));
+        getContentPane().add(cmbListaMapas);
+        cmbListaMapas.setBounds(180, 90, 130, 30);
 
-        jButton1.setText("Añadir jugador");
+        btnAñadirJugador.setBackground(new java.awt.Color(0, 25, 11));
+        btnAñadirJugador.setForeground(new java.awt.Color(204, 204, 204));
+        btnAñadirJugador.setText("Añadir jugador");
+        getContentPane().add(btnAñadirJugador);
+        btnAñadirJugador.setBounds(40, 90, 120, 30);
 
-        jButton2.setText("Editar");
+        btnEditarMapa.setBackground(new java.awt.Color(0, 25, 11));
+        btnEditarMapa.setForeground(new java.awt.Color(204, 204, 204));
+        btnEditarMapa.setText("Editar");
+        getContentPane().add(btnEditarMapa);
+        btnEditarMapa.setBounds(320, 90, 100, 30);
 
-        jButton3.setText("Reportes");
+        btnReportes.setBackground(new java.awt.Color(0, 25, 11));
+        btnReportes.setForeground(new java.awt.Color(204, 204, 204));
+        btnReportes.setText("Reportes");
+        getContentPane().add(btnReportes);
+        btnReportes.setBounds(200, 310, 90, 25);
 
-        jButton4.setText("Salir y guardar");
+        btnGuardarSalir.setBackground(new java.awt.Color(0, 25, 11));
+        btnGuardarSalir.setForeground(new java.awt.Color(204, 204, 204));
+        btnGuardarSalir.setText("Salir y guardar");
+        getContentPane().add(btnGuardarSalir);
+        btnGuardarSalir.setBounds(300, 310, 120, 25);
 
-        jButton5.setText("Iniciar partida");
+        btnIniciarPartida.setBackground(new java.awt.Color(0, 25, 11));
+        btnIniciarPartida.setForeground(new java.awt.Color(204, 204, 204));
+        btnIniciarPartida.setText("Iniciar partida");
+        getContentPane().add(btnIniciarPartida);
+        btnIniciarPartida.setBounds(40, 310, 120, 25);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbListaJugadores.setBackground(new java.awt.Color(0, 25, 11));
+        cmbListaJugadores.setForeground(new java.awt.Color(204, 204, 204));
+        cmbListaJugadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Jugadores" }));
+        getContentPane().add(cmbListaJugadores);
+        cmbListaJugadores.setBounds(40, 210, 120, 30);
 
-        jButton6.setText("Eliminar jugador");
+        btnEliminarJugador.setBackground(new java.awt.Color(0, 25, 11));
+        btnEliminarJugador.setForeground(new java.awt.Color(204, 204, 204));
+        btnEliminarJugador.setText("Eliminar jugador");
+        getContentPane().add(btnEliminarJugador);
+        btnEliminarJugador.setBounds(40, 140, 130, 30);
 
-        jButton7.setText("Crear Mapa");
+        btnCrearMapa.setBackground(new java.awt.Color(0, 25, 11));
+        btnCrearMapa.setForeground(new java.awt.Color(204, 204, 204));
+        btnCrearMapa.setText("Crear Mapa");
+        getContentPane().add(btnCrearMapa);
+        btnCrearMapa.setBounds(320, 140, 90, 30);
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Elegir mapa para editar");
+        lblElegirMapa.setForeground(new java.awt.Color(255, 255, 255));
+        lblElegirMapa.setText("Elegir mapa para editar");
+        getContentPane().add(lblElegirMapa);
+        lblElegirMapa.setBounds(180, 70, 140, 15);
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Lista de jugadores");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(320, 320, 320)
-                .addComponent(jButton7))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jlbFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(jLabel1)
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(190, 190, 190)
-                .addComponent(jLabel2))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(310, 310, 310)
-                .addComponent(jButton5))
-            .addComponent(jlbFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        lblListaJugadores.setForeground(new java.awt.Color(255, 255, 255));
+        lblListaJugadores.setText("Lista de jugadores");
+        getContentPane().add(lblListaJugadores);
+        lblListaJugadores.setBounds(40, 190, 110, 15);
+        getContentPane().add(jlbFondo);
+        jlbFondo.setBounds(0, 0, 440, 360);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -169,17 +145,17 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btnAñadirJugador;
+    private javax.swing.JButton btnCrearMapa;
+    private javax.swing.JButton btnEditarMapa;
+    private javax.swing.JButton btnEliminarJugador;
+    private javax.swing.JButton btnGuardarSalir;
+    private javax.swing.JButton btnIniciarPartida;
+    private javax.swing.JButton btnReportes;
+    private javax.swing.JComboBox<String> cmbListaJugadores;
+    private javax.swing.JComboBox<String> cmbListaMapas;
     private javax.swing.JLabel jlbFondo;
+    private javax.swing.JLabel lblElegirMapa;
+    private javax.swing.JLabel lblListaJugadores;
     // End of variables declaration//GEN-END:variables
 }
