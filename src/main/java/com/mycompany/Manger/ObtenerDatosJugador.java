@@ -1,6 +1,8 @@
 package com.mycompany.Manger;
 
+import static com.mycompany.JFrame.DatosJugador.lblAvisoColor;
 import static com.mycompany.JFrame.DatosJugador.panelColor;
+import static com.mycompany.Manger.botonAcpDtsJugador.activarBotonAceptar;
 import java.awt.Color;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
@@ -10,7 +12,10 @@ public class ObtenerDatosJugador {
    private static Color colorSeleccionado;
    private static String nombre;
    private static String tipo;
-   
+   private static boolean clrSeleccionado;
+   public ObtenerDatosJugador(){
+       setClrSeleccionado(false);
+   }
    /**
     * Se obtiene y Se establece el color seleccionado
     * Se muestra el color en el panel
@@ -19,6 +24,15 @@ public class ObtenerDatosJugador {
     public static void obtenerColor(JColorChooser color){ 
         setColorSeleccionado(color.getColor());
         panelColor.setBackground(getColorSeleccionado());
+        if(getColorSeleccionado() != Color.WHITE){
+            setClrSeleccionado(true);
+            lblAvisoColor.setText("");
+            activarBotonAceptar();
+        }else{
+            setClrSeleccionado(false);
+            lblAvisoColor.setText("*Campo Obligatorio");
+            activarBotonAceptar();
+        }
    }
     /**
      * Establece el nombre agregado
@@ -58,6 +72,14 @@ public class ObtenerDatosJugador {
 
     public static void setTipo(String tipo) {
         ObtenerDatosJugador.tipo = tipo;
+    }
+
+    public static boolean isClrSeleccionado() {
+        return clrSeleccionado;
+    }
+
+    public static void setClrSeleccionado(boolean clrSeleccionado) {
+        ObtenerDatosJugador.clrSeleccionado = clrSeleccionado;
     }
     
 }
