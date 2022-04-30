@@ -1,85 +1,85 @@
 package com.mycompany.Manger;
 
-import static com.mycompany.JFrame.DatosJugador.lblAvisoColor;
 import static com.mycompany.JFrame.DatosJugador.panelColor;
-import static com.mycompany.Manger.botonAcpDtsJugador.activarBotonAceptar;
+import com.mycompany.Personaje.Jugador;
 import java.awt.Color;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 public class ObtenerDatosJugador {
-   private static Color colorSeleccionado;
-   private static String nombre;
-   private static String tipo;
-   private static boolean clrSeleccionado;
+   private Jugador nuevoJugador; 
+   private Color colorSeleccionado;
+   private String nombre;
+   private String tipo;
+   private boolean clrSeleccionado;
+   
    public ObtenerDatosJugador(){
-       setClrSeleccionado(false);
+       nuevoJugador = new Jugador();
+//       datos = new RestriccionesYvalidaciones();
    }
+   
    /**
-    * Se obtiene y Se establece el color seleccionado
+    * Se obtiene 
     * Se muestra el color en el panel
     * @param color
     */
-    public static void obtenerColor(JColorChooser color){ 
+    public void obtenerColor(JColorChooser color){ 
+        
         setColorSeleccionado(color.getColor());
         panelColor.setBackground(getColorSeleccionado());
-        if(getColorSeleccionado() != Color.WHITE){
-            setClrSeleccionado(true);
-            lblAvisoColor.setText("");
-            activarBotonAceptar();
-        }else{
-            setClrSeleccionado(false);
-            lblAvisoColor.setText("*Campo Obligatorio");
-            activarBotonAceptar();
-        }
+        
+        
    }
     /**
      * Establece el nombre agregado
      * @param nombre 
      */
-    public static void obtenerNombreJugador(JTextField nombre){
+    public void obtenerNombreJugador(JTextField nombre){
         setNombre(nombre.getText());
+        nuevoJugador.setNombre(getNombre());
+        
     }
     /**
      * Establece el tipo seleccionado
      * @param tipo 
      */
-    public static void obtenerTipoJugador(JComboBox tipo){
+    public void obtenerTipoJugador(JComboBox tipo){
         setTipo((String) tipo.getSelectedItem());
+        nuevoJugador.setTipo(getTipo());
     }
     
     //Metodos geters y seters de tipo estaticos 
-    public static Color getColorSeleccionado() {
+    public Color getColorSeleccionado() {
         return colorSeleccionado;
     }
 
-    public static void setColorSeleccionado(Color colorSeleccionado) {
-        ObtenerDatosJugador.colorSeleccionado = colorSeleccionado;
+    public void setColorSeleccionado(Color colorSeleccionado) {
+        this.colorSeleccionado = colorSeleccionado;
     }
 
-    public static String getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public static void setNombre(String nombre) {
-        ObtenerDatosJugador.nombre = nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public static String getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public static void setTipo(String tipo) {
-        ObtenerDatosJugador.tipo = tipo;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public static boolean isClrSeleccionado() {
+    public boolean isClrSeleccionado() {
         return clrSeleccionado;
     }
 
-    public static void setClrSeleccionado(boolean clrSeleccionado) {
-        ObtenerDatosJugador.clrSeleccionado = clrSeleccionado;
+    public void setClrSeleccionado(boolean clrSeleccionado) {
+        this.clrSeleccionado = clrSeleccionado;
     }
     
 }

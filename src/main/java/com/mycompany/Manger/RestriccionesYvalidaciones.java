@@ -2,23 +2,27 @@ package com.mycompany.Manger;
 
 import static com.mycompany.JFrame.DatosJugador.cmbTipo;
 import static com.mycompany.JFrame.DatosJugador.lblAvisoCmb;
+import static com.mycompany.JFrame.DatosJugador.lblAvisoColor;
 import static com.mycompany.JFrame.DatosJugador.lblAvisoNombre;
 import static com.mycompany.JFrame.DatosJugador.txtNombre;
-import static com.mycompany.Manger.botonAcpDtsJugador.activarBotonAceptar;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
 public class RestriccionesYvalidaciones {
-    private static boolean validarNombre;
-    private static boolean validarTipo;
-    
-    public RestriccionesYvalidaciones(){
-        setValidarNombre(false);
-        setValidarTipo(false);
+
+    private boolean validarNombre;
+    private boolean validarTipo;
+    private boolean validarColor;
+    private botonAcpDtsJugador botonAceptar;
+    private ObtenerDatosJugador datos;
+
+    public RestriccionesYvalidaciones() {
+        datos = new ObtenerDatosJugador();
     }
+
     //Se limita el tamaño del texto ingresado
-    public static void limitarTamaño(KeyEvent evt) {
+    public void limitarTamaño(KeyEvent evt) {
 
         if (txtNombre.getText().length() == 0) {
             if (evt.getKeyChar() >= 32 && evt.getKeyChar() <= 64
@@ -39,45 +43,74 @@ public class RestriccionesYvalidaciones {
     }
 
     //Se valida el campo Nombre Jugador
-    public static void validacionLbvVacio() {
+    public void validacionLbvVacio() {
+
+        botonAceptar = new botonAcpDtsJugador();
         if (txtNombre.getText().isEmpty()) {
             lblAvisoNombre.setText("*Campo obligatorio");
             setValidarNombre(false);
-            activarBotonAceptar();
+            botonAceptar.activarBotonAceptar(isValidarNombre(), isValidarTipo(), datos.isClrSeleccionado());
         } else {
             lblAvisoNombre.setText("");
             setValidarNombre(true);
-            activarBotonAceptar();
+            botonAceptar.activarBotonAceptar(isValidarNombre(), isValidarTipo(), datos.isClrSeleccionado());
         }
     }
 
     //Se valida el campo Seleccionar tipo
-    public static void validacionCombobox() {
+    public void validacionCombobox() {
+        botonAceptar = new botonAcpDtsJugador();
         if (cmbTipo.getSelectedItem() == "Seleccione tipo") {
             lblAvisoCmb.setText("*Campo obligatorio");
             setValidarTipo(false);
-            activarBotonAceptar();
+            botonAceptar.activarBotonAceptar(isValidarNombre(), isValidarTipo(), isValidarColor());
         } else {
             lblAvisoCmb.setText("");
             setValidarTipo(true);
-            activarBotonAceptar();
+            botonAceptar.activarBotonAceptar(isValidarNombre(), isValidarTipo(), isValidarColor());
         }
     }
 
-    public static boolean isValidarNombre() {
+    public void validarColor() {
+        if (datos.getColorSeleccionado() != Color.WHITE) {
+            setValidarColor(true);
+            lblAvisoColor.setText("");
+            botonAceptar.activarBotonAceptar(isValidarNombre(), isValidarTipo(), isValidarColor());
+        } else {
+            setValidarColor(false);
+            lblAvisoColor.setText("*Campo Obligatorio");
+            botonAceptar.activarBotonAceptar(isValidarNombre(), isValidarTipo(), isValidarColor());
+        }
+    }
+
+    public void reestablecerComponentes() {
+        setValidarColor(false);
+        setValidarNombre(false);
+        setValidarTipo(false);
+    }
+
+    public boolean isValidarNombre() {
         return validarNombre;
     }
 
-    public static void setValidarNombre(boolean validarNombre) {
-        RestriccionesYvalidaciones.validarNombre = validarNombre;
+    public void setValidarNombre(boolean validarNombre) {
+        this.validarNombre = validarNombre;
     }
 
-    public static boolean isValidarTipo() {
+    public boolean isValidarTipo() {
         return validarTipo;
     }
 
-    public static void setValidarTipo(boolean validarTipo) {
-        RestriccionesYvalidaciones.validarTipo = validarTipo;
+    public void setValidarTipo(boolean validarTipo) {
+        this.validarTipo = validarTipo;
     }
-    
+
+    public boolean isValidarColor() {
+        return validarColor;
+    }
+
+    public void setValidarColor(boolean validarColor) {
+        this.validarColor = validarColor;
+    }
+
 }

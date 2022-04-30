@@ -1,4 +1,4 @@
-package com.mycompany.EstablecerImagen;
+package com.mycompany.Establecer;
 
 import java.awt.Image;
 import javax.swing.Icon;

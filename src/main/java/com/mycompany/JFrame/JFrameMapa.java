@@ -1,6 +1,6 @@
 package com.mycompany.JFrame;
 
-import static com.mycompany.EstablecerImagen.EstablecerImagen.establecerImagen;
+import static com.mycompany.Establecer.EstablecerImagen.establecerImagen;
 
 /**
  *

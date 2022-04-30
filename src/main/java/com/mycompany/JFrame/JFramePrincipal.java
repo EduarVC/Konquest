@@ -1,7 +1,6 @@
 package com.mycompany.JFrame;
 
-import com.mycompany.EstablecerImagen.EstablecerImagen;
-import static com.mycompany.EstablecerImagen.EstablecerImagen.establecerImagen;
+import static com.mycompany.Establecer.EstablecerImagen.establecerImagen;
 
 /**
  *
@@ -13,6 +12,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
        initComponents();
        this.setLocationRelativeTo(this);
        establecerImagen(jlbFondo, "src/main/java/com/mycompany/Imagenes/FondoNave.jpg"); //establecemos la imagen de fondo
+       
     }
 
 
@@ -189,7 +189,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardarSalir;
     private javax.swing.JButton btnIniciarPartida;
     private javax.swing.JButton btnReportes;
-    private javax.swing.JComboBox<String> cmbListaJugadores;
+    public static javax.swing.JComboBox<String> cmbListaJugadores;
     private javax.swing.JComboBox<String> cmbListaMapas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jlbFondo;
