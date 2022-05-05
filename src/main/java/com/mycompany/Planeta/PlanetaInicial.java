@@ -1,4 +1,4 @@
-package com.mycompany.Personaje;
+package com.mycompany.Planeta;
 
 import com.mycompany.Planeta.Planeta;
 

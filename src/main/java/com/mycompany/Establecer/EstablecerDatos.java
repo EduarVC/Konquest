@@ -13,7 +13,8 @@ public class EstablecerDatos {
         
     }
     public void establecerJugadoresCombobox(JComboBox cmbListaJugadores, ListaDobleEnlazada<Jugador> listajugadores) throws ListaException {
-        listajugadores.mostrarLisra();
+        listajugadores.mostrarLista();
+        cmbListaJugadores.removeAllItems();
         DefaultComboBoxModel model = (DefaultComboBoxModel) cmbListaJugadores.getModel();
         NodoDoble<Jugador> recorrer = listajugadores.getInicio();
         while (recorrer != null) {
@@ -21,4 +22,5 @@ public class EstablecerDatos {
             recorrer = recorrer.getSiguiente();
         }
     }
+    
 }

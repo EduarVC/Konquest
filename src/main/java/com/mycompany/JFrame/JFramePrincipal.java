@@ -1,16 +1,20 @@
 package com.mycompany.JFrame;
 
 import static com.mycompany.Establecer.EstablecerImagen.establecerImagen;
+import com.mycompany.Listas.ListaDobleEnlazada;
+import com.mycompany.Personaje.Jugador;
 
 /**
  *
  * @author Eduardo Vásquez
  */
 public class JFramePrincipal extends javax.swing.JFrame {
-
+    
+    private static ListaDobleEnlazada<Jugador> listaJugadores; 
     public JFramePrincipal() {
        initComponents();
        this.setLocationRelativeTo(this);
+       listaJugadores = new ListaDobleEnlazada<>();
        establecerImagen(jlbFondo, "src/main/java/com/mycompany/Imagenes/FondoNave.jpg"); //establecemos la imagen de fondo
        
     }
@@ -72,6 +76,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         btnEliminarJugador.setBackground(new java.awt.Color(0, 25, 11));
         btnEliminarJugador.setForeground(new java.awt.Color(204, 204, 204));
         btnEliminarJugador.setText("Eliminar jugador");
+        btnEliminarJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarJugadorActionPerformed(evt);
+            }
+        });
 
         btnCrearMapa.setBackground(new java.awt.Color(0, 25, 11));
         btnCrearMapa.setForeground(new java.awt.Color(204, 204, 204));
@@ -170,6 +179,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public static ListaDobleEnlazada<Jugador> getListaJugadores() {
+        return listaJugadores;
+    }
+    
+
     private void btnAñadirJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirJugadorActionPerformed
         DatosJugador añadirDatos = new DatosJugador();
         añadirDatos.setVisible(true);
@@ -179,6 +193,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         JFrameMapa nuevoMapa = new JFrameMapa();
         nuevoMapa.setVisible(true);
     }//GEN-LAST:event_btnCrearMapaActionPerformed
+
+    private void btnEliminarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarJugadorActionPerformed
+        EliminarJugador eliminar = new EliminarJugador();
+        eliminar.setVisible(true);
+    }//GEN-LAST:event_btnEliminarJugadorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

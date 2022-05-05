@@ -7,26 +7,26 @@ import static com.mycompany.JFrame.DatosJugador.coloresSeleccion;
 import static com.mycompany.JFrame.DatosJugador.panelColor;
 import static com.mycompany.JFrame.DatosJugador.txtNombre;
 import static com.mycompany.JFrame.JFramePrincipal.cmbListaJugadores;
+import static com.mycompany.JFrame.JFramePrincipal.getListaJugadores;
 import com.mycompany.Listas.ListaDobleEnlazada;
 import com.mycompany.Listas.ListaException;
-import com.mycompany.Listas.ListaJugadores;
 import com.mycompany.Personaje.Jugador;
-import static com.mycompany.Personaje.PlanetaInicial.obtenerPlanetaInicial;
+import static com.mycompany.Planeta.PlanetaInicial.obtenerPlanetaInicial;
 
 public class botonAcpDtsJugador {
     public botonAcpDtsJugador(){
-        
     }
     //Activacion del boton Guardar datos del jugador
-    public void activarBotonAceptar(boolean validaNombre, boolean validarTipo, boolean validarColor){
+    public void activarBotonAceptar(boolean validaNombre, boolean validarTipo, boolean validarColor, boolean validarNombrePlaneta){
         
-        if(validaNombre && validarTipo && validarColor){
+        if(validaNombre && validarTipo && validarColor && validarNombrePlaneta){
             btnGuardar.setEnabled(true);
         }else{
             btnGuardar.setEnabled(false);
         }
     }
     
+    //Se guardan los datos del jugador
     public void guardarDatosJugador() throws ListaException{
         Jugador nuevoJugador = new Jugador();
         nuevoJugador.setNombre(txtNombre.getText());
@@ -38,15 +38,9 @@ public class botonAcpDtsJugador {
         nuevoPlaneta.agregar(obtenerPlanetaInicial());
         nuevoJugador.setPlanetasJugador(nuevoPlaneta);
         
-        ListaDobleEnlazada<Jugador> nuevo;
-        nuevo = new ListaDobleEnlazada<>();
-        nuevo.agregar(nuevoJugador);
-        ListaJugadores listaJug = new ListaJugadores();
-        listaJug.setListaJugadores(nuevo);
-        nuevo.mostrarLisra();
+        getListaJugadores().agregar(nuevoJugador);
         EstablecerDatos establecer = new EstablecerDatos();
-        establecer.establecerJugadoresCombobox(cmbListaJugadores, listaJug.getListaJugadores());
-        listaJug.getListaJugadores().mostrarLisra();
+        establecer.establecerJugadoresCombobox(cmbListaJugadores, getListaJugadores());
     }
 
     

@@ -61,11 +61,9 @@ public class ListaDobleEnlazada<T> {
             inicio = null;
             ultimo = null;
         } else {
-            NodoDoble<T> anterior = ultimo.getAnterior();
-            anterior.setSiguiente(null);
-            ultimo = anterior;
+            ultimo.getAnterior().setSiguiente(null);
+            ultimo = ultimo.getAnterior();
         }
-        longitud--;
     }
 
     public T obtenerContenido(int indice) throws ListaException {
@@ -154,7 +152,7 @@ public class ListaDobleEnlazada<T> {
 
         longitud++;
     }
-    public void mostrarLisra(){
+    public void mostrarLista(){
         NodoDoble recorrer = inicio;
         while(recorrer!=null){
             System.out.println(recorrer.getContenido());
