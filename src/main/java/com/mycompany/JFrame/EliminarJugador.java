@@ -3,18 +3,20 @@ package com.mycompany.JFrame;
 import static com.mycompany.Establecer.EstablecerImagen.establecerImagen;
 import static com.mycompany.JFrame.JFramePrincipal.getListaJugadores;
 import com.mycompany.Listas.ListaException;
+import com.mycompany.Manger.Eliminar;
 import com.mycompany.Manger.ManagerMapa;
 /**
  *
  * @author Eduardo Vásquez
  */
 public class EliminarJugador extends javax.swing.JFrame {
-
+    private Eliminar eliminarJugador;
     private ManagerMapa inicializarTabla;
 
     public EliminarJugador() {
         initComponents();
         this.setLocationRelativeTo(this);
+        eliminarJugador = new Eliminar();
         inicializarTabla = new ManagerMapa();
         inicializarTabla.InicializarTablaElimar(tblLista);
         establecerImagen(lblFondo, "src/main/java/com/mycompany/Imagenes/FondoNave.jpg"); //establecemos la imagen de fondo
@@ -118,10 +120,9 @@ public class EliminarJugador extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         System.out.println(getListaJugadores().obtenerLongitud());
         try {
-            getListaJugadores().eliminarElementoEnIndice(Integer.parseInt(txtNumero.getText())-1);
-            inicializarTabla.InicializarTablaElimar(tblLista);
-         } catch (NumberFormatException | ListaException e) {
-            System.out.println("Algo paso, revice la eliminacion de Jugadores");
+            eliminarJugador.EliminarJugador(tblLista);
+        } catch (ListaException | NumberFormatException ex ) {
+            System.out.println("Algo paso");
         }
         
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -134,6 +135,6 @@ public class EliminarJugador extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JTable tblLista;
-    private javax.swing.JTextField txtNumero;
+    public static javax.swing.JTextField txtNumero;
     // End of variables declaration//GEN-END:variables
 }

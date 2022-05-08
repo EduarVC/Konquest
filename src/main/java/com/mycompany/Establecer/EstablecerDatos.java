@@ -14,11 +14,13 @@ public class EstablecerDatos {
     }
     public void establecerJugadoresCombobox(JComboBox cmbListaJugadores, ListaDobleEnlazada<Jugador> listajugadores) throws ListaException {
         listajugadores.mostrarLista();
+        
         cmbListaJugadores.removeAllItems();
         DefaultComboBoxModel model = (DefaultComboBoxModel) cmbListaJugadores.getModel();
         NodoDoble<Jugador> recorrer = listajugadores.getInicio();
         while (recorrer != null) {
             model.addElement(recorrer.getContenido().getNombre());
+            recorrer.getContenido().getPlanetasJugador().mostrarLista();
             recorrer = recorrer.getSiguiente();
         }
     }

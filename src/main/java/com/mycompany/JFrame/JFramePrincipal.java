@@ -2,6 +2,7 @@ package com.mycompany.JFrame;
 
 import static com.mycompany.Establecer.EstablecerImagen.establecerImagen;
 import com.mycompany.Listas.ListaDobleEnlazada;
+import com.mycompany.Listas.TiposPlanetasDisponibles;
 import com.mycompany.Personaje.Jugador;
 
 /**
@@ -9,16 +10,20 @@ import com.mycompany.Personaje.Jugador;
  * @author Eduardo Vásquez
  */
 public class JFramePrincipal extends javax.swing.JFrame {
-    
-    private static ListaDobleEnlazada<Jugador> listaJugadores; 
-    public JFramePrincipal() {
-       initComponents();
-       this.setLocationRelativeTo(this);
-       listaJugadores = new ListaDobleEnlazada<>();
-       establecerImagen(jlbFondo, "src/main/java/com/mycompany/Imagenes/FondoNave.jpg"); //establecemos la imagen de fondo
-       
-    }
 
+    private static ListaDobleEnlazada<Jugador> listaJugadores;
+    private TiposPlanetasDisponibles listaTipos;
+    static String[] listaTiposPlanetas;
+
+    public JFramePrincipal() {
+        
+        initComponents();
+        this.setLocationRelativeTo(this);
+        listaTipos = new TiposPlanetasDisponibles();
+        listaJugadores = new ListaDobleEnlazada<>();
+        establecerImagen(jlbFondo,"src/main/java/com/mycompany/Imagenes/FondoNave.jpg"); //establecemos la imagen de fondo
+        setListaTiposPlanetas(listaTipos.getTipos());
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -179,12 +184,19 @@ public class JFramePrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public static String[] getListaTiposPlanetas() {
+        return listaTiposPlanetas;
+    }
+
+    public static void setListaTiposPlanetas(String[] listaPlanetas) {
+        JFramePrincipal.listaTiposPlanetas = listaPlanetas;
+    }
+
     public static ListaDobleEnlazada<Jugador> getListaJugadores() {
         return listaJugadores;
     }
-    
-
     private void btnAñadirJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirJugadorActionPerformed
+
         DatosJugador añadirDatos = new DatosJugador();
         añadirDatos.setVisible(true);
     }//GEN-LAST:event_btnAñadirJugadorActionPerformed

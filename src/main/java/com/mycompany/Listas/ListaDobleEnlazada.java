@@ -34,7 +34,6 @@ public class ListaDobleEnlazada<T> {
         if (indice >= longitud || indice < 0) {
             throw new ListaException("Indice fuera de rango");
         }
-
         if (indice == 0) {
             inicio = inicio.getSiguiente();
             if (inicio != null) {
@@ -46,7 +45,6 @@ public class ListaDobleEnlazada<T> {
             NodoDoble<T> actual = buscarIndice(indice);
             NodoDoble<T> anterior = actual.getAnterior();
             NodoDoble<T> siguiente = actual.getSiguiente();
-
             siguiente.setAnterior(anterior);
             anterior.setSiguiente(siguiente);
         }
@@ -119,14 +117,14 @@ public class ListaDobleEnlazada<T> {
             NodoDoble<T> nuevo = new NodoDoble<>(contenido);
             inicio = nuevo;
             ultimo = nuevo;
-            
+
         } else if (indice == longitud - 1) {
             NodoDoble<T> nuevo = new NodoDoble<>(contenido);
             nuevo.setAnterior(ultimo.getAnterior());
             nuevo.setSiguiente(ultimo);
             ultimo.getAnterior().setSiguiente(nuevo);
             ultimo.setAnterior(nuevo);
-            
+
         } else if (indice == 0) {
             NodoDoble<T> nuevo = new NodoDoble<>(contenido);
             inicio.setAnterior(nuevo);
@@ -152,9 +150,10 @@ public class ListaDobleEnlazada<T> {
 
         longitud++;
     }
-    public void mostrarLista(){
+
+    public void mostrarLista() {
         NodoDoble recorrer = inicio;
-        while(recorrer!=null){
+        while (recorrer != null) {
             System.out.println(recorrer.getContenido());
             recorrer = recorrer.getSiguiente();
         }

@@ -9,6 +9,12 @@ public class PlanetaJugador extends Planeta{
     public PlanetaJugador(){
         setCategoria("Normal");
     }
+    
+     @Override
+    public String toString() {
+        return "Nombre: " +getNombrePlaneta() + "\nTipo: " + getTipo() + "\nCategoria: " + getCategoria();
+    }
+    
     @Override
     public void posicionarPlaneta() {
         //Al azar
