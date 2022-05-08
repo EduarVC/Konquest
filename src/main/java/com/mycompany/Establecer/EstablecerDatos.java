@@ -20,6 +20,7 @@ public class EstablecerDatos {
         NodoDoble<Jugador> recorrer = listajugadores.getInicio();
         while (recorrer != null) {
             model.addElement(recorrer.getContenido().getNombre());
+                System.out.println(recorrer.getContenido().getNombre());
             recorrer.getContenido().getPlanetasJugador().mostrarLista();
             recorrer = recorrer.getSiguiente();
         }

@@ -213,7 +213,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAñadirJugador;
+    public static javax.swing.JButton btnAñadirJugador;
     private javax.swing.JButton btnCrearMapa;
     private javax.swing.JButton btnEditarMapa;
     private javax.swing.JButton btnEliminarJugador;

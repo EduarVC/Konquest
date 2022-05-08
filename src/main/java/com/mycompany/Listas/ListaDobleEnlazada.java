@@ -101,7 +101,9 @@ public class ListaDobleEnlazada<T> {
         }
 
         NodoDoble<T> actual = ultimo;
-        for (int i = 0; i < indice; i++) {
+        System.out.println(actual.getContenido());
+        System.out.println(indice);
+        for (int i = longitud-1; i > indice; i--) {
             NodoDoble<T> anterior = actual.getAnterior();
             actual = anterior;
         }

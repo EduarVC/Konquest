@@ -8,6 +8,7 @@ import static com.mycompany.JFrame.DatosJugador.coloresSeleccion;
 import static com.mycompany.JFrame.DatosJugador.panelColor;
 import static com.mycompany.JFrame.DatosJugador.txtNombre;
 import static com.mycompany.JFrame.DatosJugador.txtNombrePlaneta;
+import static com.mycompany.JFrame.JFramePrincipal.btnAñadirJugador;
 import static com.mycompany.JFrame.JFramePrincipal.cmbListaJugadores;
 import static com.mycompany.JFrame.JFramePrincipal.getListaJugadores;
 import com.mycompany.Listas.ListaException;
@@ -22,7 +23,7 @@ public class botonAcpDtsJugador {
     private TiposPlanetasDisponibles modificarTipos;
     
     public botonAcpDtsJugador(){
-        modificarTipos = new TiposPlanetasDisponibles();
+        
         obtenerPlaneta = new ObtenerPlaneta();
     }
     //Activacion del boton Guardar datos del jugador
@@ -37,6 +38,7 @@ public class botonAcpDtsJugador {
     
     //Se guardan los datos del jugador
     public void guardarDatosJugador() throws ListaException{
+        modificarTipos = new TiposPlanetasDisponibles();
         Jugador nuevoJugador = new Jugador();
         nuevoJugador.setNombre(txtNombre.getText());
         nuevoJugador.setColorAsignado(coloresSeleccion.getColor());
@@ -51,6 +53,9 @@ public class botonAcpDtsJugador {
         getListaJugadores().agregar(nuevoJugador);
         EstablecerDatos establecer = new EstablecerDatos();
         establecer.establecerJugadoresCombobox(cmbListaJugadores, getListaJugadores());
+        if(getListaJugadores().obtenerLongitud() >= 8){
+            btnAñadirJugador.setEnabled(false);
+        }
     }
 
     
