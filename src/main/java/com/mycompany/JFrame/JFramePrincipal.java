@@ -3,6 +3,7 @@ package com.mycompany.JFrame;
 import static com.mycompany.Establecer.EstablecerImagen.establecerImagen;
 import com.mycompany.Listas.ListaDobleEnlazada;
 import com.mycompany.Listas.TiposPlanetasDisponibles;
+import com.mycompany.Mapa.Mapa;
 import com.mycompany.Personaje.Jugador;
 
 /**
@@ -13,6 +14,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private static ListaDobleEnlazada<Jugador> listaJugadores;
     private TiposPlanetasDisponibles listaTipos;
+    private static ListaDobleEnlazada<Mapa> listaMapas;
     static String[] listaTiposPlanetas;
 
     public JFramePrincipal() {
@@ -21,6 +23,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         listaTipos = new TiposPlanetasDisponibles();
         listaJugadores = new ListaDobleEnlazada<>();
+        listaMapas = new ListaDobleEnlazada<>();
         establecerImagen(jlbFondo,"src/main/java/com/mycompany/Imagenes/FondoNave.jpg"); //establecemos la imagen de fondo
         setListaTiposPlanetas(listaTipos.getTipos());
     }
@@ -184,6 +187,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public static ListaDobleEnlazada<Mapa> getListaMapas() {
+        return listaMapas;
+    }
+    
     public static String[] getListaTiposPlanetas() {
         return listaTiposPlanetas;
     }
