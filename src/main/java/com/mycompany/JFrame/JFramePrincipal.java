@@ -32,6 +32,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         establecer.establecerImagen(jlbFondo, "/FondoNave.jpg"); //establecemos la imagen de fondo
         setListaTiposPlanetas(listaTipos.getTipos());
         btnCrearMapa.setEnabled(false);
+        
     }
 
     @SuppressWarnings("unchecked")

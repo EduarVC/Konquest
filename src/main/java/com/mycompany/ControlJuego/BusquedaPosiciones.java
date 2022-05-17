@@ -71,17 +71,17 @@ public class BusquedaPosiciones {
         }
         return tamañoX + tamañoY;
     }
-
-    public Planeta obtenerPlanetaDestino(int casillaAtacar) {
+    //se obtiene el planeta de destino y el planeta origen
+    public Planeta obtenerPlaneta(int casillaAtacar) {
         NodoDoble<Jugador> recorrer = getListaJugadores().getInicio();
         NodoDoble<PlanetaJugador> obtener = recorrer.getContenido().getPlanetasJugador().getInicio();
-        Planeta planetaDestino = new PlanetaJugador();
+        Planeta planeta = new PlanetaJugador();
         int contador = 1;
         boolean encontrado = false;
         for (int i = 0; i < getMatriz().length; i++) {
             for (int j = 0; j < getMatriz()[i].length; j++) {
                 if (contador == casillaAtacar) {
-                    planetaDestino = obtener.getContenido();
+                    planeta = obtener.getContenido();
                     encontrado = true;
                     break;
                 }
@@ -96,10 +96,10 @@ public class BusquedaPosiciones {
             }
 
         }
-        return planetaDestino;
+        return planeta;
 
     }
-
+    //Se obtiene la posicion del boton
     public int obtenerCasilla(JButton boton) {
         int contador = 1;
         int casillaSeleccinada = 0;
@@ -112,14 +112,16 @@ public class BusquedaPosiciones {
                     break;
                 }
                 contador++;
+                System.out.println(contador);
             }
             if (encontrado) {
                 break;
             }
         }
+        
         return casillaSeleccinada;
     }
-
+    //Se Obtiene el tipo de planeta
     public Planeta obtenerTipoPlaneta(int posicion) {
         NodoDoble<Jugador> recorerJugadores = getListaJugadores().getInicio();
         NodoDoble<Mapa> recorrerMapa = getListaMapas().getInicio();

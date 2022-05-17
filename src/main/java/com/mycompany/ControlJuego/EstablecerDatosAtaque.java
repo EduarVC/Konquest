@@ -17,10 +17,27 @@ public class EstablecerDatosAtaque {
         if (!"Inteligencia Artificial".equals(jugador.getTipo())) {
             lblNombreJugador.setText(jugador.getNombre());
             lblNombreJugador.setForeground(jugador.getColorAsignado());
+            
         }else{
             AtaqueIA nuevoAtaque = new AtaqueIA();
             nuevoAtaque.ataqueIA(jugador);
+            establecerDatosTurno();
         }
 
     }
+    public void establecerDatosTurno() {
+        Jugador jugador = new Jugador();
+        jugador = datos.cambiarTurnos();
+        if (!"Inteligencia Artificial".equals(jugador.getTipo())) {
+            lblNombreJugador.setText(jugador.getNombre());
+            lblNombreJugador.setForeground(jugador.getColorAsignado());
+            
+        }else{
+            AtaqueIA nuevoAtaque = new AtaqueIA();
+            nuevoAtaque.ataqueIA(jugador);
+            establecerDatosTurno();
+        }
+
+    }
+    
 }
