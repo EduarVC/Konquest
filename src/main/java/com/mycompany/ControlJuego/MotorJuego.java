@@ -25,13 +25,6 @@ public class MotorJuego {
         jugadorTurno = new Jugador();
     }
 
-    //Turno inicial
-    public Jugador TurnoInicial() {
-        Jugador jugadorEnturtno = new Jugador();
-        jugadorEnturtno = getRecorrerJugadores().getContenido();
-        return jugadorEnturtno;
-    }
-
     //Se cambia de turno
     public Jugador cambiarTurnos() {
         Jugador jugadorEnturno = new Jugador();
@@ -46,7 +39,7 @@ public class MotorJuego {
             jugadorEnturno = getRecorrerJugadores().getContenido();
             setRecorrerJugadores(recorerJugadores);
         }
-
+        
         setJugadorTurno(jugadorEnturno);
         return jugadorEnturno;
     }

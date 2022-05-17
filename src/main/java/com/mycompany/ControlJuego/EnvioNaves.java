@@ -21,7 +21,7 @@ public class EnvioNaves {
         nuevoAtaque.setOrigen(planetaOrigen);
         nuevoAtaque.setDestino(planetaDestino);
         getListaAtaques().agregar(nuevoAtaque);
-        jtxtMensajes.setText(String.format("(%s) El planeta %s envio %d naves al planeta %s ", planetaOrigen.getConquistador(),planetaOrigen.getNombrePlaneta(), cantidadNaves, planetaDestino.getNombrePlaneta()));
+        jtxtMensajes.append(String.format("\n(%s) El planeta %s envio %d naves al planeta %s ", planetaOrigen.getConquistador(),planetaOrigen.getNombrePlaneta(), cantidadNaves, planetaDestino.getNombrePlaneta()));
         jtxtMensajes.setForeground(obtenerColor(planetaOrigen));
     }
 
@@ -40,7 +40,7 @@ public class EnvioNaves {
         nuevoAtaque.setOrigen(planetaOrigen);
         nuevoAtaque.setDestino(planetaDestino);
         getListaAtaques().agregar(nuevoAtaque);
-        jtxtMensajes.setText(String.format("(%s) El planeta %s envio %d naves al planeta %s ", planetaOrigen.getConquistador(),planetaOrigen.getNombrePlaneta(), 
+        jtxtMensajes.append(String.format("\n(%s) El planeta %s envio %d naves al planeta %s ", planetaOrigen.getConquistador(),planetaOrigen.getNombrePlaneta(), 
                                                                                                            cantidadDeNaves, planetaDestino.getNombrePlaneta()));
         jtxtMensajes.setForeground(obtenerColor(planetaOrigen));
     }
@@ -64,7 +64,7 @@ public class EnvioNaves {
         nuevoAtaque.setOrigen(planetaOrigen);
         nuevoAtaque.setDestino(planetaDestino);
         getListaAtaques().agregar(nuevoAtaque);
-        jtxtMensajes.setText(String.format("(%s) El planeta %s envio %d naves al planeta %s ", planetaOrigen.getTipo(),planetaOrigen.getNombrePlaneta(),
+        jtxtMensajes.append(String.format("\n(%s) El planeta %s envio %d naves al planeta %s ", planetaOrigen.getTipo(),planetaOrigen.getNombrePlaneta(),
                                                                            planetaOrigen.getCantidadNavesMandar() , planetaDestino.getNombrePlaneta()));
         jtxtMensajes.setForeground(planetaOrigen.getColorAsignado());
 

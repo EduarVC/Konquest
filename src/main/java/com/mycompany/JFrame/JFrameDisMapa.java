@@ -19,6 +19,7 @@ public class JFrameDisMapa extends javax.swing.JFrame {
     private final EstablecerDatosAtaque datos;
     private static int origen;
     private static int destino;
+    private static int contador;
 
     public JFrameDisMapa() {
         initComponents();
@@ -33,6 +34,14 @@ public class JFrameDisMapa extends javax.swing.JFrame {
         dibujar.establecerMapa(spContenedor);
         datos.establecerDatosTurno();
         
+    }
+
+    public static int getContador() {
+        return contador;
+    }
+
+    public static void setContador(int contador) {
+        JFrameDisMapa.contador = contador;
     }
 
     public static NodoDoble<Jugador> getRecorrerJugadores() {
@@ -251,6 +260,7 @@ public class JFrameDisMapa extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         EstablecerDatosAtaque Ataque = new EstablecerDatosAtaque();
         Ataque.establecerDatosTurno();
+        setContador(getContador() + 1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
