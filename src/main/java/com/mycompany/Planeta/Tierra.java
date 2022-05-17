@@ -4,5 +4,6 @@ public class Tierra extends PlanetaJugador{
     
     public Tierra(){
         setTipo("Tierra");
+        setPath("/PlanetaTierraa.png");
     }
 }

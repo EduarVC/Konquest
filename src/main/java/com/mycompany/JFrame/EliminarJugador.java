@@ -1,6 +1,6 @@
 package com.mycompany.JFrame;
 
-import static com.mycompany.Establecer.EstablecerImagen.establecerImagen;
+import com.mycompany.Establecer.EstablecerImagen;
 import static com.mycompany.JFrame.JFramePrincipal.getListaJugadores;
 import com.mycompany.Listas.ListaException;
 import com.mycompany.Manger.Eliminar;
@@ -12,14 +12,16 @@ import com.mycompany.Manger.ManagerMapa;
 public class EliminarJugador extends javax.swing.JFrame {
     private Eliminar eliminarJugador;
     private ManagerMapa inicializarTabla;
+    private EstablecerImagen establecer;
 
     public EliminarJugador() {
         initComponents();
         this.setLocationRelativeTo(this);
         eliminarJugador = new Eliminar();
         inicializarTabla = new ManagerMapa();
+        establecer = new EstablecerImagen();
         inicializarTabla.InicializarTablaElimar(tblLista);
-        establecerImagen(lblFondo, "src/main/java/com/mycompany/Imagenes/FondoNave.jpg"); //establecemos la imagen de fondo
+        establecer.establecerImagen(lblFondo, "/FondoNave.jpg"); //establecemos la imagen de fondo
     }
 
     @SuppressWarnings("unchecked")

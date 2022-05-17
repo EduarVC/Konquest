@@ -15,7 +15,6 @@ import com.mycompany.Listas.ListaException;
 import com.mycompany.Listas.TiposPlanetasDisponibles;
 import com.mycompany.Personaje.Jugador;
 import com.mycompany.Planeta.ObtenerPlaneta;
-import com.mycompany.Planeta.Planeta;
 import com.mycompany.Planeta.PlanetaJugador;
 
 public class botonAcpDtsJugador {
@@ -45,9 +44,10 @@ public class botonAcpDtsJugador {
         panelColor.setBackground(coloresSeleccion.getColor());
         nuevoJugador.setTipo((String) cmbTipo.getSelectedItem());
         nuevoJugador.setCantidadPlanetas(1);
-        Planeta nuevoPlaneta  = new PlanetaJugador();
+        PlanetaJugador nuevoPlaneta  = new PlanetaJugador();
         nuevoPlaneta = obtenerPlaneta.obtenerPlaneta((String) cmbTipoPlaneta.getSelectedItem());
         nuevoPlaneta.setNombrePlaneta(txtNombrePlaneta.getText());
+        nuevoPlaneta.setConquistador(txtNombre.getText());
         nuevoJugador.getPlanetasJugador().agregar(nuevoPlaneta);
         modificarTipos.eliminarTipoLista((String) cmbTipoPlaneta.getSelectedItem());
         getListaJugadores().agregar(nuevoJugador);

@@ -21,7 +21,6 @@ public class ManagerMapa {
             modelo.addRow(jugadores);
             tabla.setForeground(recorrer.getContenido().getColorAsignado());
             
-//            tabla.setBackground(recorrer.getContenido().getColorAsignado());
             recorrer = recorrer.getSiguiente();
         }
     }
@@ -44,6 +43,10 @@ public class ManagerMapa {
             recorrer = recorrer.getSiguiente();
             contador++;
         }
+    }
+    
+    public void activarBoton(){
+        
     }
      
 }

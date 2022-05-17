@@ -1,5 +1,7 @@
 package com.mycompany.Planeta;
 
+import static com.mycompany.JFrame.JFrameMapa.chekDistribucion;
+
 public class PlanetaJugador extends Planeta{
     private String conquistador;
     private int cantidadNavesInicial;
@@ -16,9 +18,8 @@ public class PlanetaJugador extends Planeta{
     }
     
     @Override
-    public void posicionarPlaneta() {
-        //Al azar
-        //Manual    
+    public boolean posicionarPlaneta() {
+        return chekDistribucion.isSelected();
     }
 
     public String getConquistador() {

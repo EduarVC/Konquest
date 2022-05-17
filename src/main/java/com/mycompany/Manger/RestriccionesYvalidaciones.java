@@ -46,7 +46,7 @@ public class RestriccionesYvalidaciones {
             Toolkit.getDefaultToolkit().beep();
         }
     }
-    //
+    //se limita el nombre de los planetas
     public void limitarTamañoNombrePlaneta(KeyEvent evt){
       if (txtNombrePlaneta.getText().length() == 0 || txtNombrePlaneta.getText().length() == 1 || txtNombrePlaneta.getText().length() == 2) {
             if (evt.getKeyChar() >= 32 && evt.getKeyChar() <= 64

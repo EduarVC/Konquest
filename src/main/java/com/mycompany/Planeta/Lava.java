@@ -4,5 +4,6 @@ public class Lava extends PlanetaJugador{
     
     public Lava(){
         setTipo("Lava");
+        setPath("/PlanetaLavaa.png");
     }
 }

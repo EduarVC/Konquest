@@ -1,21 +1,24 @@
 package com.mycompany.JFrame;
 
-import static com.mycompany.Establecer.EstablecerImagen.establecerImagen;
-import static com.mycompany.JFrame.JFramePrincipal.getListaMapas;
+import com.mycompany.Establecer.EstablecerImagen;
 import com.mycompany.Manger.ManagerMapa;
 import com.mycompany.Mapa.CapturaDatosMapa;
-import com.mycompany.Mapa.GenerarAlAzar;
+import com.mycompany.Mapa.GenerarDatosAlAzar;
 
 
 public class JFrameMapa extends javax.swing.JFrame {
-    private ManagerMapa inicializarTabla;
+    private final ManagerMapa inicializarTabla;
+    private EstablecerImagen establecerIMG;
     
     public JFrameMapa() {
         initComponents();
         this.setLocationRelativeTo(this);
         inicializarTabla = new ManagerMapa();
+        establecerIMG = new EstablecerImagen();
         inicializarTabla.inicializarTabla(tblJugadores);
-        establecerImagen(lblFondo, "src/main/java/com/mycompany/Imagenes/FondoNave.jpg"); //establecemos la imagen de fondo
+        establecerIMG.establecerImagen(lblFondo, "/FondoNave.jpg"); //establecemos la imagen de fondo
+        btnAceptar.setEnabled(false);
+        btnGuardar.setEnabled(false);
         
     }
 
@@ -59,7 +62,8 @@ public class JFrameMapa extends javax.swing.JFrame {
         lblTituloOpcciones = new javax.swing.JLabel();
         lblTituloJugadores = new javax.swing.JLabel();
         lblTituloMapa = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        chekDistribucion = new javax.swing.JCheckBox();
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -201,11 +205,11 @@ public class JFrameMapa extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jPanel3.setForeground(new java.awt.Color(0, 0, 0));
 
-        spPlanetasNeutrales.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        spPlanetasNeutrales.setModel(new javax.swing.SpinnerNumberModel(1, 1, 5, 1));
 
-        spAnchura.setModel(new javax.swing.SpinnerNumberModel(2, 2, null, 1));
+        spAnchura.setModel(new javax.swing.SpinnerNumberModel(10, 10, 21, 1));
 
-        spAltura.setModel(new javax.swing.SpinnerNumberModel(2, 2, null, 1));
+        spAltura.setModel(new javax.swing.SpinnerNumberModel(5, 5, 10, 1));
 
         spProdiccion.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
@@ -233,10 +237,21 @@ public class JFrameMapa extends javax.swing.JFrame {
             }
         });
 
+        txtNombreMapa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreMapaActionPerformed(evt);
+            }
+        });
+        txtNombreMapa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreMapaKeyReleased(evt);
+            }
+        });
+
         lvlNombreMapa.setForeground(new java.awt.Color(204, 204, 204));
         lvlNombreMapa.setText("Nombre del mapa:");
 
-        spPlanetasZombie.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        spPlanetasZombie.setModel(new javax.swing.SpinnerNumberModel(1, 1, 4, 1));
 
         spCantidadNavesZombie.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
@@ -246,7 +261,7 @@ public class JFrameMapa extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("Planetas fantasma:");
 
-        spPlanetasFantasma.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        spPlanetasFantasma.setModel(new javax.swing.SpinnerNumberModel(1, 1, 3, 1));
 
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("Cantidad de naves:");
@@ -363,60 +378,78 @@ public class JFrameMapa extends javax.swing.JFrame {
         lblTituloMapa.setForeground(new java.awt.Color(204, 204, 204));
         lblTituloMapa.setText("Mapa");
 
-        jButton1.setText("Guardar");
+        btnGuardar.setText("Guardar");
+
+        chekDistribucion.setText("Distribución al azar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(lblTituloJugadores)
-                .addGap(181, 181, 181)
-                .addComponent(lblTituloMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(237, 237, 237)
+                .addGap(530, 530, 530)
                 .addComponent(lblTituloOpcciones, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(298, 298, 298)
+                .addGap(620, 620, 620)
+                .addComponent(chekDistribucion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(530, 530, 530)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(btnAceptar)
-                .addGap(27, 27, 27)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(btnCancelar))
+                .addGap(244, 244, 244)
+                .addComponent(lblTituloMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(244, 244, 244)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(btnAceptar))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(btnCancelar))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(lblTituloJugadores))
             .addComponent(lblFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(lblTituloOpcciones))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(chekDistribucion))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(btnGuardar))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTituloJugadores)
-                    .addComponent(lblTituloMapa)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(lblTituloOpcciones)))
-                .addGap(2, 2, 2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAceptar)
-                    .addComponent(jButton1)
-                    .addComponent(btnCancelar)))
+                .addComponent(lblTituloMapa))
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(btnAceptar))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(btnCancelar))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(lblTituloJugadores))
             .addComponent(lblFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
@@ -428,61 +461,40 @@ public class JFrameMapa extends javax.swing.JFrame {
     }//GEN-LAST:event_checkProduccionAcumulativaActionPerformed
 
     private void chkbAlAzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkbAlAzarActionPerformed
-        GenerarAlAzar generarDatos = new GenerarAlAzar();
+        GenerarDatosAlAzar generarDatos = new GenerarDatosAlAzar();
         generarDatos.AlAzar(spPlanetasNeutrales, spPlanetasFantasma, spPlanetasZombie, spProdiccion, spPorcentageMuerte, spCantidadNavesZombie);
     }//GEN-LAST:event_chkbAlAzarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         CapturaDatosMapa guardarDatos = new CapturaDatosMapa();
         guardarDatos.capturarDatosMapaNuevo();
-        getListaMapas().mostrarLista();
+        DatosPlanetasJugador datosPJ = new DatosPlanetasJugador();
+        datosPJ.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameMapa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameMapa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameMapa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameMapa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void txtNombreMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreMapaActionPerformed
+       
+    }//GEN-LAST:event_txtNombreMapaActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFrameMapa().setVisible(true);
-            }
-        });
-    }
+    private void txtNombreMapaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreMapaKeyReleased
+        if(txtNombreMapa.getText().isEmpty()){
+           btnAceptar.setEnabled(false);
+       }else {
+            btnAceptar.setEnabled(true);
+        }
+    }//GEN-LAST:event_txtNombreMapaKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
+    public static javax.swing.JButton btnGuardar;
     public static javax.swing.JCheckBox checkMapaCiego;
     public static javax.swing.JCheckBox checkMostrarEstadisticas;
     public static javax.swing.JCheckBox checkMostrarNaves;
     public static javax.swing.JCheckBox checkProduccionAcumulativa;
+    public static javax.swing.JCheckBox chekDistribucion;
     public static javax.swing.JCheckBox chkbAlAzar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

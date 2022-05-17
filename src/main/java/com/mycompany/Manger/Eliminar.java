@@ -20,8 +20,6 @@ public class Eliminar {
     public void EliminarJugador(JTable tblLista) throws ListaException {
         int indice = (Integer.parseInt(txtNumero.getText())) - 1;
         System.out.println(indice);
-//        getListaJugadores().obtenerContenido(indice).getPlanetasJugador().obtenerContenido(0).getTipo();
-// getListaJugadores().obtenerContenido(indice).getPlanetasJugador().obtenerContenido(0).getTipo();
         String tipoAgregar = getListaJugadores().buscarIndice(indice).getContenido().getPlanetasJugador().obtenerContenido(0).getTipo();
         System.out.println(tipoAgregar);
         agregarTipo.añadirTipoLista(tipoAgregar);

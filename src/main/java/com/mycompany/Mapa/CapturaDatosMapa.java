@@ -9,16 +9,20 @@ import static com.mycompany.JFrame.JFrameMapa.spPlanetasFantasma;
 import static com.mycompany.JFrame.JFrameMapa.spPlanetasNeutrales;
 import static com.mycompany.JFrame.JFrameMapa.spPlanetasZombie;
 import static com.mycompany.JFrame.JFrameMapa.txtNombreMapa;
+import static com.mycompany.JFrame.JFramePrincipal.cmbListaMapas;
 import static com.mycompany.JFrame.JFramePrincipal.getListaMapas;
+import com.mycompany.Listas.NodoDoble;
+import javax.swing.DefaultComboBoxModel;
 
 public class CapturaDatosMapa {
+
     private GenerarPlanetas generar;
-    
-    public CapturaDatosMapa(){
+
+    public CapturaDatosMapa() {
         generar = new GenerarPlanetas();
     }
-    
-    public void capturarDatosMapaNuevo(){
+
+    public void capturarDatosMapaNuevo() {
         Mapa nuevoMapa = new Mapa();
         nuevoMapa.setNombreMapa(txtNombreMapa.getText());
         nuevoMapa.setAlto((int) spAltura.getValue());
@@ -29,14 +33,30 @@ public class CapturaDatosMapa {
         nuevoMapa.setMapaCiego(mapaCiego());
         nuevoMapa.setAlAzar(alAzar());
         nuevoMapa.setProduccionAcumulativa(porAcumulacion());
-        generar.generarPlanetaNeutral(nuevoMapa);
-        generar.generarPlanetasZombie(nuevoMapa);
-        generar.generarPlanetasFantasma(nuevoMapa);
-        
+
         getListaMapas().agregar(nuevoMapa);
-        
+        establecerCmbMapas();
+        NodoDoble<Mapa> recorrer = getListaMapas().getInicio();
+        while (recorrer != null) {
+            if (recorrer.getContenido().getNombreMapa().equals(nuevoMapa.getNombreMapa())) {
+                generar.generarPlanetaNeutral(recorrer.getContenido());
+                generar.generarPlanetasZombie(recorrer.getContenido());
+                generar.generarPlanetasFantasma(recorrer.getContenido());
+            }
+            recorrer = recorrer.getSiguiente();
+        }
+
     }
 
+    private void establecerCmbMapas() {
+        cmbListaMapas.removeAllItems();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cmbListaMapas.getModel();
+        NodoDoble<Mapa> recorrer = getListaMapas().getInicio();
+        while (recorrer != null) {
+            model.addElement(recorrer.getContenido().getNombreMapa());
+            recorrer = recorrer.getSiguiente();
+        }
+    }
 
     private boolean mapaCiego() {
         return checkMapaCiego.isSelected();
@@ -49,6 +69,5 @@ public class CapturaDatosMapa {
     private boolean porAcumulacion() {
         return checkProduccionAcumulativa.isSelected();
     }
-    
-    
+
 }

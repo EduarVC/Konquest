@@ -4,8 +4,18 @@ public abstract class Planeta {
     private String nombrePlaneta;
     private String categoria;
     private String tipo;
+    private String path;
+    private int posicion;
     
-    public abstract void posicionarPlaneta();
+    public abstract boolean posicionarPlaneta();
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 
     public String getNombrePlaneta() {
         return nombrePlaneta;
@@ -29,6 +39,14 @@ public abstract class Planeta {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public int getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
     }
     
 }

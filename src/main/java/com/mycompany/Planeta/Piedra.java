@@ -4,5 +4,6 @@ public class Piedra extends PlanetaJugador{
     
     public Piedra(){
         setTipo("Piedra");
+        setPath("/PlanetaPiedraa.png");
     }
 }

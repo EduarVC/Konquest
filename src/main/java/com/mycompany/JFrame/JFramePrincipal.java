@@ -1,10 +1,12 @@
 package com.mycompany.JFrame;
 
-import static com.mycompany.Establecer.EstablecerImagen.establecerImagen;
+import com.mycompany.Establecer.EstablecerImagen;
 import com.mycompany.Listas.ListaDobleEnlazada;
 import com.mycompany.Listas.TiposPlanetasDisponibles;
+import com.mycompany.Manger.VerificarOrdenamientoPlanetas;
 import com.mycompany.Mapa.Mapa;
 import com.mycompany.Personaje.Jugador;
+import javax.swing.JButton;
 
 /**
  *
@@ -16,7 +18,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private TiposPlanetasDisponibles listaTipos;
     private static ListaDobleEnlazada<Mapa> listaMapas;
     static String[] listaTiposPlanetas;
-
+    private static JButton [][] matriz;
+    private EstablecerImagen establecer;
+    
     public JFramePrincipal() {
         
         initComponents();
@@ -24,8 +28,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
         listaTipos = new TiposPlanetasDisponibles();
         listaJugadores = new ListaDobleEnlazada<>();
         listaMapas = new ListaDobleEnlazada<>();
-        establecerImagen(jlbFondo,"src/main/java/com/mycompany/Imagenes/FondoNave.jpg"); //establecemos la imagen de fondo
+        establecer = new EstablecerImagen();
+        establecer.establecerImagen(jlbFondo, "/FondoNave.jpg"); //establecemos la imagen de fondo
         setListaTiposPlanetas(listaTipos.getTipos());
+        btnCrearMapa.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -44,6 +50,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
         lblElegirMapa = new javax.swing.JLabel();
         lblListaJugadores = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        cmbTipoMapa = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jlbFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,6 +85,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         btnIniciarPartida.setBackground(new java.awt.Color(0, 25, 11));
         btnIniciarPartida.setForeground(new java.awt.Color(204, 204, 204));
         btnIniciarPartida.setText("Iniciar partida");
+        btnIniciarPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarPartidaActionPerformed(evt);
+            }
+        });
 
         cmbListaJugadores.setBackground(new java.awt.Color(0, 25, 11));
         cmbListaJugadores.setForeground(new java.awt.Color(204, 204, 204));
@@ -110,6 +124,17 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("KONQUEST");
 
+        cmbTipoMapa.setBackground(new java.awt.Color(0, 25, 11));
+        cmbTipoMapa.setForeground(new java.awt.Color(204, 204, 204));
+        cmbTipoMapa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Invación", "Galaxia", "Nave espacial" }));
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Tipos de mapa");
+
+        jButton1.setBackground(new java.awt.Color(0, 25, 11));
+        jButton1.setForeground(new java.awt.Color(204, 204, 204));
+        jButton1.setText("Eliminar mapa");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,33 +146,38 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 .addGap(170, 170, 170)
                 .addComponent(lblElegirMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(cmbListaMapas, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnAñadirJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(btnEditarMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(310, 310, 310)
-                .addComponent(btnCrearMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(cmbListaMapas, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(lblListaJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnEliminarJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(btnCrearMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(310, 310, 310)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(cmbListaJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(160, 160, 160)
+                .addComponent(cmbTipoMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(btnIniciarPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(140, 140, 140)
+                .addGap(40, 40, 40)
+                .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addComponent(btnGuardarSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(310, 310, 310)
+                .addComponent(btnEditarMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(cmbListaJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(btnEliminarJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(btnAñadirJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblListaJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jlbFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
@@ -159,33 +189,43 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 .addComponent(lblElegirMapa)
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbListaMapas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditarMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAñadirJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbListaMapas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
-                .addComponent(btnCrearMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEliminarJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCrearMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
-                .addComponent(lblListaJugadores)
-                .addGap(105, 105, 105)
+                .addComponent(jLabel2)
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbListaJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbTipoMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnIniciarPartida)
+                    .addComponent(btnReportes)
                     .addComponent(btnGuardarSalir)))
             .addGroup(layout.createSequentialGroup()
-                .addGap(310, 310, 310)
-                .addComponent(btnReportes))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(cmbListaJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(btnEliminarJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(90, 90, 90)
-                .addComponent(btnAñadirJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnEditarMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(190, 190, 190)
+                .addComponent(lblListaJugadores))
             .addComponent(jlbFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public static void setMatriz(JButton[][] matriz) {
+        JFramePrincipal.matriz = matriz;
+    }
+
+    public static JButton[][] getMatriz() {
+        return matriz;
+    }
 
     public static ListaDobleEnlazada<Mapa> getListaMapas() {
         return listaMapas;
@@ -218,18 +258,26 @@ public class JFramePrincipal extends javax.swing.JFrame {
         eliminar.setVisible(true);
     }//GEN-LAST:event_btnEliminarJugadorActionPerformed
 
+    private void btnIniciarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarPartidaActionPerformed
+        VerificarOrdenamientoPlanetas verificar = new VerificarOrdenamientoPlanetas();
+        verificar.verificar();
+    }//GEN-LAST:event_btnIniciarPartidaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton btnAñadirJugador;
-    private javax.swing.JButton btnCrearMapa;
+    public static javax.swing.JButton btnCrearMapa;
     private javax.swing.JButton btnEditarMapa;
     private javax.swing.JButton btnEliminarJugador;
     private javax.swing.JButton btnGuardarSalir;
-    private javax.swing.JButton btnIniciarPartida;
+    public static javax.swing.JButton btnIniciarPartida;
     private javax.swing.JButton btnReportes;
     public static javax.swing.JComboBox<String> cmbListaJugadores;
-    private javax.swing.JComboBox<String> cmbListaMapas;
+    public static javax.swing.JComboBox<String> cmbListaMapas;
+    public static javax.swing.JComboBox<String> cmbTipoMapa;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jlbFondo;
     private javax.swing.JLabel lblElegirMapa;
     private javax.swing.JLabel lblListaJugadores;

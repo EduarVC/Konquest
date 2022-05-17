@@ -1,7 +1,7 @@
 package com.mycompany.Personaje;
 
 import com.mycompany.Listas.ListaDobleEnlazada;
-import com.mycompany.Planeta.Planeta;
+import com.mycompany.Planeta.PlanetaJugador;
 import java.awt.Color;
 
 public class Jugador {
@@ -9,7 +9,7 @@ public class Jugador {
     private String tipo;
     private int cantidadPlanetas;
     private Color colorAsignado;
-    private ListaDobleEnlazada<Planeta>  planetasJugador;
+    private ListaDobleEnlazada<PlanetaJugador>  planetasJugador;
     
     public  Jugador(){
         planetasJugador = new ListaDobleEnlazada<>();
@@ -52,11 +52,11 @@ public class Jugador {
         this.colorAsignado = colorAsignado;
     }
 
-    public ListaDobleEnlazada<Planeta> getPlanetasJugador() {
+    public ListaDobleEnlazada<PlanetaJugador> getPlanetasJugador() {
         return planetasJugador;
     }
 
-    public void setPlanetasJugador(ListaDobleEnlazada<Planeta> planetasJugador) {
+    public void setPlanetasJugador(ListaDobleEnlazada<PlanetaJugador> planetasJugador) {
         this.planetasJugador = planetasJugador;
     }
     

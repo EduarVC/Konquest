@@ -1,9 +1,9 @@
 package com.mycompany.Planeta;
 
 public class ObtenerPlaneta {
-    private Planeta planetaInicial;
+    private PlanetaJugador planetaInicial;
     
-    public Planeta obtenerPlaneta(String tipoPlaneta){
+    public PlanetaJugador obtenerPlaneta(String tipoPlaneta){
         
         switch (tipoPlaneta) {
             case "Agua":
@@ -26,6 +26,7 @@ public class ObtenerPlaneta {
                 break;
             case "Viento": 
                 planetaInicial = new Viento();
+                break;
             case "Piedra":
                 planetaInicial = new Piedra();
                 break;

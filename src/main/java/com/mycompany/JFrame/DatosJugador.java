@@ -1,6 +1,7 @@
 package com.mycompany.JFrame;
 
-import static com.mycompany.Establecer.EstablecerImagen.establecerImagen;
+import com.mycompany.Establecer.EstablecerImagen;
+import static com.mycompany.JFrame.JFramePrincipal.btnCrearMapa;
 import com.mycompany.Listas.ListaException;
 import com.mycompany.Listas.TiposPlanetasDisponibles;
 import com.mycompany.Manger.ObtenerDatosJugador;
@@ -13,14 +14,16 @@ public class DatosJugador extends javax.swing.JFrame {
     private botonAcpDtsJugador botonAceptar;
     private RestriccionesYvalidaciones restringir;
     private TiposPlanetasDisponibles iniciarCmbx;
-
+    private EstablecerImagen establecerIMG;
+    
     public DatosJugador() {
         initComponents();
         this.setLocationRelativeTo(this);
         iniciarCmbx = new TiposPlanetasDisponibles();
         restringir = new RestriccionesYvalidaciones();
         botonAceptar = new botonAcpDtsJugador();
-        establecerImagen(lblFondo, "src/main/java/com/mycompany/Imagenes/FondoNave.jpg"); //establecemos la imagen de fondo
+        establecerIMG = new EstablecerImagen();
+        establecerIMG.establecerImagen(lblFondo, "/FondoNave.jpg"); //establecemos la imagen de fondo
         btnGuardar.setEnabled(false);
         cmbModo.setEnabled(false);
         iniciarCmbx.definirTiposPrincipio(cmbTipoPlaneta);
@@ -349,6 +352,7 @@ public class DatosJugador extends javax.swing.JFrame {
             System.out.println("Algo paso");
         }
         restringir.reestablecerComponentes();
+        btnCrearMapa.setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
